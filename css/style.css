@@ -1,0 +1,11 @@
+/* Stylesheet by Lukas Wellenstein, 2022 */
+    #mydiv {
+        background-color: red;
+        width: 80%;
+        margin: 0 auto;
+        height: 100px;
+        font-size: 50pt;
+    }
+
+
+
