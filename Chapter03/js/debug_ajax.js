@@ -29,6 +29,8 @@ function initialize(){
     addColumns(cityPop);
     //call addEvents
     addEvents();
+    //call debugAjax
+    debugAjax();
 };
 
 //function to create a table with cities and their populations
@@ -119,25 +121,30 @@ function addEvents(){
     document.querySelector("table").addEventListener("click", clickMe)
 };
 
-    
-
 
 //initializing the code
 document.addEventListener('DOMContentLoaded',initialize)
+
+
+//activity 4
+// defining debugCallback function
 function debugCallback(response){
-	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+    //sending the geojson data stored in response to the webpage
+	document.querySelector("#myDiv").insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response))
 };
-
-function debugAjax(){
-	
-	var myData;
-	
-	fetch("data/MegaCities_Right.geojson")
+// defining debugAjax function
+function debugAjax(){ 
+    //getting the geojson file from my data folder
+	fetch("data/MegaCities.geojson")
+        //once the data has been loaded, do the simplified conversion
 		.then(function(response){
-			debugCallback(response);
+            //use return to store the .json data in responce variable
+			return response.json();
 		})
+        //once this process is done, call debugCallback
+        .then(debugCallback)
 
-	document.querySelector("#mydiv").insertAdjacentHTML('beforeend' '<br>GeoJSON data:<br>' + JSON.stringify(myData))
+	
 };
 
-document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+
